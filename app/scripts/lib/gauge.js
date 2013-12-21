@@ -1,9 +1,9 @@
 'use strict';
 /*global d3:false */
+/*exported D3Gauge */
+var D3Gauge = function (configObject, value) {
 
-var d3Gauge = function (configObject, sections, value) {
-
-  var d3Gauge = {
+  var D3Gauge = {
     version: '0.0.1'
   };
 
@@ -20,6 +20,20 @@ var d3Gauge = function (configObject, sections, value) {
   for (var item in configObject) {
     config[item] = configObject[item];
   }
+
+  var defaultSections = function () {
+    var step = config.maxValue / 10;
+    var outputArray = [];
+    for (var i = config.minValue; i < config.maxValue; i = i + step) {
+      outputArray.push([i, i+step]);
+    }
+    return outputArray;
+  };
+
+
+  var sections = config.inputSections || defaultSections();
+
+
   var sectionExtent = d3.extent(d3.merge(sections));
   var gaugeScale = d3.scale.linear().domain(sectionExtent).range([-0.5 * Math.PI, 0.5 * Math.PI]);
   var colorScale = d3.scale.linear().domain(sectionExtent).range([config.colorStart, config.colorEnd]);
@@ -70,7 +84,7 @@ var d3Gauge = function (configObject, sections, value) {
         });
   };
 
-  d3Gauge.updateValue = function (value) {
+  D3Gauge.updateValue = function (value) {
     svg.selectAll('path.needle')
         .data([value])
         .transition()
@@ -82,5 +96,5 @@ var d3Gauge = function (configObject, sections, value) {
 
   createScaleArc();
   addNeedle();
-  return d3Gauge;
+  return D3Gauge;
 };
