@@ -1,6 +1,8 @@
 'use strict';
 /*global d3:false */
 /*exported D3Gauge */
+
+
 var D3Gauge = function (configObject, value) {
 
   var D3Gauge = {
