@@ -38,5 +38,20 @@ describe('d3GaugesDirective', function () {
     expect(isolatedScope.value).toEqual(42);
   });
 
+  it('allows a bound sections value', function () {
+    $rootScope.testSections = [
+      [0, 10],
+      [10, 20],
+      [20, 30],
+      [30, 40],
+      [40, 50]
+    ];
+    testHTML = '<div d3-gauge id="test-div" width="100" height="50" min-value="0" max-value="100" start-color="green" end-color="red" value="testValue" sections="testSections"></div>';
+    element = $compile(testHTML)($rootScope);
+    $rootScope.$digest();
+    var isolatedScope = element.isolateScope();
+    expect(isolatedScope.sections).toEqual($rootScope.testSections);
+  });
+
 
 });

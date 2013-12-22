@@ -60,15 +60,15 @@ var D3Gauge = function (configObject, value) {
           .startAngle(gaugeScale(start))
           .endAngle(gaugeScale(finish));
     };
-    for (var i = 0; i < sections.length; i++) {
+    var sectionLength = sections.length;
+    for (var i = 0; i < sectionLength; i++) {
       svg.append('path')
           .attr('class', 'background')
           .attr('d', createArc(sections[i][0], sections[i][1]))
           .attr('transform', centrePoint())
-          .style('fill', colorScale(sections[i][0]));
+          .style('fill', i < (sectionLength / 2) ? colorScale(sections[i][0]) : colorScale(sections[i][1]));
     }
   };
-
 
   var addNeedle = function () {
     svg.selectAll('path.needle')
@@ -97,7 +97,6 @@ var D3Gauge = function (configObject, value) {
     svg.selectAll('text')
         .datum([value])
         .text(function (d) {
-          console.log(d);
           return d;
         });
   };
