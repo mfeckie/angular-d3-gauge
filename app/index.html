@@ -37,19 +37,29 @@
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <h3>Static Gauge</h3>
-                <div class="" id="g2"></div>
+
             </div>
             <div class="col-lg-6 col-md-6">
                 <h3>Dynamic Gauge</h3>
+
                 <p>Use the number selector to change the value of the gauge</p>
+
                 <div class="form-group">
-                <label for="numberInput1">Value: </label>
-                <input id="numberInput1" type="number" ng-model="demoValue"/>
+                    <label for="numberInput1">Value: </label>
+                    <input id="numberInput1" type="number" ng-model="demoValue"/>
                 </div>
-                <div class ="gauge" d3-gauge id="test-div" width="200" height="140" min-value="0" max-value="100" start-color="green"
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-5 col-md-6">
+                <div class="" id="g2"></div>
+            </div>
+            <div class="col-lg-5 col-md-6">
+                <div class="gauge" d3-gauge id="test-div" width="200" height="140" min-value="0" max-value="100"
+                     start-color="green"
                      end-color="purple" value="demoValue"></div>
             </div>
-
         </div>
     </div>
     <!-- Add your site or application content here -->
