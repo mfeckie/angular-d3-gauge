@@ -35,36 +35,116 @@
 <div ng-controller="demoCtrl">
     <div class="container">
         <div class="row">
+            <h1>Configuring angular-d3-gauge</h1>
+
+            <p>The following items area configurable</p>
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th width="10%">Attribute</th>
+                    <th width="15%">Usage</th>
+                    <th width="25%">Effect</th>
+                    <th width="50%">Notes</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>width</td>
+                    <td><code>width="200"</code></td>
+                    <td>Sets the width of the gauge</td>
+                    <td>The width should be at least twice the height</td>
+                </tr>
+                <tr>
+                    <td>height</td>
+                    <td><code>height="200</code></td>
+                    <td>Sets the height of the gauge</td>
+                    <td>The height should be at least half of the width</td>
+                </tr>
+                <tr>
+                    <td>min-value</td>
+                    <td><code>min-value="0"</code></td>
+                    <td>Sets the minimum value for the scale</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>max-value</td>
+                    <td><code>max-value="200"</code></td>
+                    <td>Sets the maximum value for the scale</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>start-color</td>
+                    <td><code>start-color="green"</code></td>
+                    <td>Sets the initial color for your gauge</td>
+                    <td>You can keep the gauge one color by setting both the start and end to the same value</td>
+                </tr>
+                <tr>
+                    <td>end-color</td>
+                    <td><code>end-color=""red</code></td>
+                    <td>Sets the end color for your gauge</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>sections</td>
+                    <td>Optional <code>sections="[[0,10],[10,15],[15,30]]"</code> or
+                        <code>sections="angularProperty"</code></td>
+                    <td>Optionally sets the sections in your gauge</td>
+                    <td>Use a javascript style array of start and end pairs or bind to an angular property that
+                        represents an array of start end pairs. If left blank, you will be given 10 evenly sized
+                        sections
+                        based on your min/max values
+                    </td>
+                </tr>
+                <tr>
+                    <td>value</td>
+                    <td><code>value="10"</code> or <code>value="angularProperty"</code></td>
+                    <td>Sets the value of your gauge</td>
+                    <td>If you bind to an angular property the needle will update as the value changes</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
             <div class="col-lg-6 col-md-6">
                 <h3>Static Gauge</h3>
 
+                <p>It's very simple to create a static gauge, just don't bind any of the attributes to an angular
+                    model</p>
+<pre>
+&lt;div class="gauge" d3-gauge id="static-gauge1" width="200" height="140"
+min-value="0" max-value="30"
+start-color="green" end-color="red"
+value="20" sections="[[0,10],[10,15],[15,30]]"&gt;&lt;/div&gt;
+</pre>
             </div>
             <div class="col-lg-6 col-md-6">
                 <h3>Dynamic Gauge</h3>
 
                 <p>Use the number selector to change the value of the gauge</p>
-
+<pre>
+&lt;div class="gauge" d3-gauge id="test-div" width="200" height="140"
+min-value="0" max-value="200" start-color="green"
+end-color="purple" value="demoValue"&gt;&lt;/div&gt;
+</pre>
                 <div class="form-group">
                     <label for="numberInput1">Value: </label>
                     <input id="numberInput1" type="number" ng-model="demoValue"/>
                 </div>
-
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6 col-md-6">
-                <div class="" id="g2"></div>
+                <div class="gauge" d3-gauge id="static-gauge1" width="200" height="140" min-value="0" max-value="30"
+                     start-color="green"
+                     end-color="red" value="20" sections="[[0,10],[10,15],[15,30]]"></div>
             </div>
             <div class="col-lg-6 col-md-6">
-                <div class="gauge" d3-gauge id="test-div" width="200" height="140" min-value="0" max-value="100"
+                <div class="gauge" d3-gauge id="test-div" width="200" height="140" min-value="0" max-value="200"
                      start-color="green"
                      end-color="purple" value="demoValue"></div>
             </div>
         </div>
     </div>
-    <!-- Add your site or application content here -->
-
-
 </div>
 
 
@@ -81,41 +161,5 @@
 <script src="scripts/controllers/demoController.js"></script>
 <script src="scripts/directives/d3GaugeDirective.js"></script>
 <!-- endbuild -->
-<script>
-
-    var sections = [
-        [0, 5],
-        [5, 10],
-        [10, 15],
-        [15, 20],
-        [20, 25],
-        [25, 30],
-        [30, 35],
-        [35, 40],
-        [40, 45],
-        [45, 50],
-        [50, 55],
-        [55, 60],
-        [60, 65],
-        [65, 70],
-        [70, 75],
-        [75, 80],
-        [80, 85],
-        [85, 90],
-        [90, 95],
-        [95, 100]
-    ];
-
-    var config = {
-        id: '#g2',
-        width: 200,
-        height: 140,
-        colorEnd: 'blue',
-        inputSections: sections
-    };
-
-    var demoGauge = D3Gauge(config, 15);
-    demoGauge.updateValue(Math.floor(Math.random() * 100));
-</script>
 </body>
 </html>
