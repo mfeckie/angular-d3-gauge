@@ -16,7 +16,8 @@ var D3Gauge = function (configObject, value) {
     minValue: 0,
     maxValue: 100,
     colorStart: 'green',
-    colorEnd: 'red'
+    colorEnd: 'red',
+    border: true
   };
 
   for (var item in configObject) {
@@ -27,7 +28,7 @@ var D3Gauge = function (configObject, value) {
     var step = config.maxValue / 10;
     var outputArray = [];
     for (var i = config.minValue; i < config.maxValue; i = i + step) {
-      outputArray.push([i, i+step]);
+      outputArray.push([i, i + step]);
     }
     return outputArray;
   };
@@ -35,29 +36,27 @@ var D3Gauge = function (configObject, value) {
 
   var sections = config.inputSections || defaultSections();
 
-
+  var arcWidth = config.width - (config.width * 0.05);
   var sectionExtent = d3.extent(d3.merge(sections));
   var gaugeScale = d3.scale.linear().domain(sectionExtent).range([-0.5 * Math.PI, 0.5 * Math.PI]);
   var colorScale = d3.scale.linear().domain(sectionExtent).range([config.colorStart, config.colorEnd]);
   var needleScale = d3.scale.linear().domain([config.minValue, config.maxValue]).range([0, 180]);
-  var needleArc = d3.svg.arc().innerRadius(0).outerRadius(config.width / 2).startAngle(gaugeScale(0)).endAngle(gaugeScale(0));
+  var needleArc = d3.svg.arc().innerRadius(0).outerRadius(arcWidth / 2).startAngle(gaugeScale(0)).endAngle(gaugeScale(0));
 
   var chart = d3.select(config.id);
   var svg = chart.append('svg')
       .style('width', config.width + 'px')
-      .style('height', config.height + 'px')
-      .style('border', 'solid black 2px');
+      .style('height', config.height + 'px');
 
   var centrePoint = function () {
-    return 'translate(' + config.width / 2 + ',' + config.height + ')';
+    return 'translate(' + config.width / 2 + ',' + (config.height - 4) + ')';
   };
-
 
   var createScaleArc = function () {
     var createArc = function (start, finish) {
       return d3.svg.arc()
-          .innerRadius(config.width / 4)
-          .outerRadius(config.width / 2)
+          .innerRadius(arcWidth / 4)
+          .outerRadius(arcWidth / 2)
           .startAngle(gaugeScale(start))
           .endAngle(gaugeScale(finish));
     };
@@ -94,9 +93,63 @@ var D3Gauge = function (configObject, value) {
         .attr('transform', function (d) {
           return centrePoint() + ' rotate(' + needleScale(d) + ')';
         });
+
+    svg.selectAll('text')
+        .datum([value])
+        .text(function (d) {
+          console.log(d);
+          return d;
+        });
+  };
+
+  var addTextValue = function () {
+    svg.selectAll('g')
+        .data([value])
+        .enter()
+        .append('g')
+        .attr('class', 'svg-labels');
+
+    svg.selectAll('g.svg-labels')
+        .append('text')
+        .text(function (d) {
+          return d;
+        })
+        .attr('x', config.width / 2)
+        .attr('y', (config.height / 8 ) * 7)
+        .style('fill', 'grey')
+        .attr('text-anchor', 'middle')
+        .attr('stroke', 'white')
+        .attr('stroke-width', 2)
+        .attr('class', 'background');
+
+    svg.selectAll('g.svg-labels')
+        .append('text')
+        .text(function (d) {
+          return d;
+        })
+        .attr('x', config.width / 2)
+        .attr('y', (config.height / 8 ) * 7)
+        .style('fill', 'grey')
+        .attr('text-anchor', 'middle');
+
+  };
+
+  var addBorder = function () {
+    if (config.border === true) {
+      svg.append('rect')
+          .attr('x', 0)
+          .attr('y', 0)
+          .attr('width', config.width)
+          .attr('height', config.height)
+          .style('fill', 'none')
+          .attr('stroke', 'black')
+          .attr('stroke-width', 4);
+    }
   };
 
   createScaleArc();
   addNeedle();
+  addTextValue();
+  addBorder();
   return D3Gauge;
 };
