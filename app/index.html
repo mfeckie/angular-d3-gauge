@@ -29,16 +29,32 @@
 <script src="bower_components/es5-shim/es5-shim.js"></script>
 <script src="bower_components/json3/lib/json3.min.js"></script>
 <![endif]-->
-
-<!-- Add your site or application content here -->
-<div id="gauge"></div>
-<div id="g2"></div>
+<div class="page-header">
+    <h1 class="text-center">Angular D3 Gauges Demo</h1>
+</div>
 <div ng-controller="demoCtrl">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <h3>Static Gauge</h3>
+                <div class="" id="g2"></div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <h3>Dynamic Gauge</h3>
+                <p>Use the number selector to change the value of the gauge</p>
+                <div class="form-group">
+                <label for="numberInput1">Value: </label>
+                <input id="numberInput1" type="number" ng-model="demoValue"/>
+                </div>
+                <div class ="gauge" d3-gauge id="test-div" width="200" height="140" min-value="0" max-value="100" start-color="green"
+                     end-color="purple" value="demoValue"></div>
+            </div>
 
-    <input type="number" ng-model="demoValue"/>
+        </div>
+    </div>
+    <!-- Add your site or application content here -->
 
-    <div d3-gauge id="test-div" width="200" height="100" min-value="0" max-value="100" start-color="green"
-         end-color="purple" value="demoValue"></div>
+
 </div>
 
 
@@ -82,8 +98,8 @@
 
     var config = {
         id: '#g2',
-        width: 100,
-        height: 50,
+        width: 200,
+        height: 140,
         colorEnd: 'blue',
         inputSections: sections
     };

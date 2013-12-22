@@ -2,5 +2,5 @@
 
 angular.module('angularD3GaugesApp')
     .controller('demoCtrl', function ($scope) {
-      $scope.demoValue = 1;
+      $scope.demoValue = 50;
     });
