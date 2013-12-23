@@ -1,95 +1,93 @@
 <!doctype html>
-<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
-<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
-<html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
-  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript" src="javascripts/script.js"></script>
-
-  <title>angular-d3-gauge</title>
-  <meta name="description" content="Angular directives for creating bindable gauges with d3 and AngluarJS">
-
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="stylesheets/bootstrap.css">
+    <!-- endbuild -->
 </head>
+<body ng-app="angularD3GaugesApp">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
 
-<body>
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.min.js"></script>
+<![endif]-->
+<div class="page-header">
+    <h1 class="text-center">Angular D3 Gauges Demo</h1>
+</div>
+<div ng-controller="demoCtrl">
+    <div class="container">
+        <div class="row">
+            <h1>Configuring angular-d3-gauge</h1>
 
-  <div class="wrapper">
-    <header>
-      <h1 class="title">angular-d3-gauge</h1>
-    </header>
-    <div id="container">
-      <p class="tagline">Angular directives for creating bindable gauges with d3 and AngluarJS</p>
-      <div id="main" role="main">
-        <div class="download-bar">
-        <div class="inner">
-          <a href="https://github.com/mfeckie/angular-d3-gauge/tarball/master" class="download-button tar"><span>Download</span></a>
-          <a href="https://github.com/mfeckie/angular-d3-gauge/zipball/master" class="download-button zip"><span>Download</span></a>
-          <a href="https://github.com/mfeckie/angular-d3-gauge" class="code">View angular-d3-gauge on GitHub</a>
-        </div>
-        <span class="blc"></span><span class="trc"></span>
-        </div>
-        <article class="markdown-body">
-          <h3>
-<a name="angular-d3-gauges" class="anchor" href="#angular-d3-gauges"><span class="octicon octicon-link"></span></a>angular-d3-gauges</h3>
-
-<p>This set of AngularJS directives integrates d3 to allow you to create fuel gauge style indicators.</p>
-
-<table>
-<thead><tr>
-<th width="10%">Attribute</th>
+            <p>The following items area configurable</p>
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th width="10%">Attribute</th>
                     <th width="15%">Usage</th>
                     <th width="25%">Effect</th>
                     <th width="50%">Notes</th>
-                </tr></thead>
-<tbody>
-<tr>
-<td>width</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>width</td>
                     <td><code>width="200"</code></td>
                     <td>Sets the width of the gauge</td>
                     <td>The width should be at least twice the height</td>
                 </tr>
-<tr>
-<td>height</td>
+                <tr>
+                    <td>height</td>
                     <td><code>height="200</code></td>
                     <td>Sets the height of the gauge</td>
                     <td>The height should be at least half of the width</td>
                 </tr>
-<tr>
-<td>min-value</td>
+                <tr>
+                    <td>min-value</td>
                     <td><code>min-value="0"</code></td>
                     <td>Sets the minimum value for the scale</td>
                     <td></td>
                 </tr>
-<tr>
-<td>max-value</td>
+                <tr>
+                    <td>max-value</td>
                     <td><code>max-value="200"</code></td>
                     <td>Sets the maximum value for the scale</td>
                     <td></td>
                 </tr>
-<tr>
-<td>start-color</td>
+                <tr>
+                    <td>start-color</td>
                     <td><code>start-color="green"</code></td>
                     <td>Sets the initial color for your gauge</td>
                     <td>You can keep the gauge one color by setting both the start and end to the same value</td>
                 </tr>
-<tr>
-<td>end-color</td>
+                <tr>
+                    <td>end-color</td>
                     <td><code>end-color=""red</code></td>
                     <td>Sets the end color for your gauge</td>
                     <td></td>
                 </tr>
-<tr>
-<td>sections</td>
+                <tr>
+                    <td>sections</td>
                     <td>Optional <code>sections="[[0,10],[10,15],[15,30]]"</code> or
-                        <code>sections="angularProperty"</code>
-</td>
+                        <code>sections="angularProperty"</code></td>
                     <td>Optionally sets the sections in your gauge</td>
                     <td>Use a javascript style array of start and end pairs or bind to an angular property that
                         represents an array of start end pairs. If left blank, you will be given 10 evenly sized
@@ -97,36 +95,72 @@
                         based on your min/max values
                     </td>
                 </tr>
-<tr>
-<td>value</td>
-                    <td>
-<code>value="10"</code> or <code>value="angularProperty"</code>
-</td>
+                <tr>
+                    <td>value</td>
+                    <td><code>value="10"</code> or <code>value="angularProperty"</code></td>
                     <td>Sets the value of your gauge</td>
                     <td>If you bind to an angular property the needle will update as the value changes</td>
                 </tr>
-</tbody>
-</table>
-        </article>
-      </div>
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <h3>Static Gauge</h3>
+
+                <p>It's very simple to create a static gauge, just don't bind any of the attributes to an angular
+                    model</p>
+<pre>
+&lt;div class="gauge" d3-gauge id="static-gauge1" width="200" height="140"
+min-value="0" max-value="30"
+start-color="green" end-color="red"
+value="20" sections="[[0,10],[10,15],[15,30]]"&gt;&lt;/div&gt;
+</pre>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <h3>Dynamic Gauge</h3>
+
+                <p>Use the number selector to change the value of the gauge</p>
+<pre>
+&lt;div class="gauge" d3-gauge id="test-div" width="200" height="140"
+min-value="0" max-value="200" start-color="green"
+end-color="purple" value="demoValue"&gt;&lt;/div&gt;
+</pre>
+                <div class="form-group">
+                    <label for="numberInput1">Value: </label>
+                    <input id="numberInput1" type="number" ng-model="demoValue"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="gauge" d3-gauge id="static-gauge1" width="200" height="140" min-value="0" max-value="30"
+                     start-color="green"
+                     end-color="red" value="20" sections="[[0,10],[10,15],[15,30]]"></div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="gauge" d3-gauge id="test-div" width="200" height="140" min-value="0" max-value="200"
+                     start-color="green"
+                     end-color="purple" value="demoValue"></div>
+            </div>
+        </div>
     </div>
-    <footer>
-      <div class="owner">
-      <p><a href="https://github.com/mfeckie" class="avatar"><img src="https://1.gravatar.com/avatar/c247d50c623c3bf6257ad11e08f732f1?d=https%3A%2F%2Fidenticons.github.com%2Fb40071f5c1bea7cfad11b52d41d70a36.png&amp;r=x&amp;s=60" width="48" height="48"/></a> <a href="https://github.com/mfeckie">mfeckie</a> maintains <a href="https://github.com/mfeckie/angular-d3-gauge">angular-d3-gauge</a></p>
+</div>
 
 
-      </div>
-      <div class="creds">
-        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
-      </div>
-    </footer>
-  </div>
-  <div class="current-section">
-    <a href="#top">Scroll to top</a>
-    <a href="https://github.com/mfeckie/angular-d3-gauge/tarball/master" class="tar">tar</a><a href="https://github.com/mfeckie/angular-d3-gauge/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
-    <p class="name"></p>
-  </div>
+<script src="http://code.angularjs.org/1.2.6/angular.min.js"></script>
+<script src="http://code.angularjs.org/1.2.6/angular-route.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.3.11/d3.min.js"></script>
+<!-- build:js scripts/modules.js -->
+<!--<script src="bower_components/angular-route/angular-route.js"></script>-->
+<!--<script src="bower_components/d3/d3.js"></script>-->
+<script src="scripts/lib/gauge.js"></script>
+<!-- endbuild -->
 
-  
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/demoController.js"></script>
+<script src="scripts/directives/d3GaugeDirective.js"></script>
+<!-- endbuild -->
 </body>
 </html>
