@@ -8,5 +8,4 @@ Full information on usage can be found at  http://mfeckie.github.io/angular-d3-g
 ###TODO
  * Add ability to configure section colors individually, rather than via automatic scaling
  * Add ability to have chart labels and title
- * Add border toggling
 

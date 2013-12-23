@@ -13,7 +13,8 @@ angular.module('d3GaugeDirective', [])
           startColor: '@',
           endColor: '@',
           value: '=',
-          sections: '='
+          sections: '=',
+          border: '='
         },
         template: '<div id={{id}}-d3-gauge class="d3-gauge"></div>',
         link: function (scope) {
@@ -25,7 +26,8 @@ angular.module('d3GaugeDirective', [])
             maxValue: scope.maxValue,
             colorStart: scope.startColor,
             colorEnd: scope.endColor,
-            inputSections: scope.sections
+            inputSections: scope.sections,
+            border: scope.border === true ? true : false
           };
           var gauge = new D3Gauge(config, parseInt(scope.value));
 

@@ -96,6 +96,12 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>border</td>
+                    <td><code>border="true"</code></td>
+                    <td>Use an svg rectangle as a border. Defaults to false if no value is given</td>
+                    <td></td>
+                </tr>
+                <tr>
                     <td>value</td>
                     <td><code>value="10"</code> or <code>value="angularProperty"</code></td>
                     <td>Sets the value of your gauge</td>
@@ -123,7 +129,7 @@ value="20" sections="[[0,10],[10,15],[15,30]]"&gt;&lt;/div&gt;
                 <p>Use the number selector to change the value of the gauge</p>
 <pre>
 &lt;div class="gauge" d3-gauge id="test-div" width="200" height="140"
-min-value="0" max-value="200" start-color="green"
+min-value="0" max-value="200" start-color="green" border="true"
 end-color="purple" value="demoValue"&gt;&lt;/div&gt;
 </pre>
                 <div class="form-group">
@@ -140,7 +146,7 @@ end-color="purple" value="demoValue"&gt;&lt;/div&gt;
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="gauge" d3-gauge id="test-div" width="200" height="140" min-value="0" max-value="200"
-                     start-color="green"
+                     start-color="green" border="true"
                      end-color="purple" value="demoValue"></div>
             </div>
         </div>

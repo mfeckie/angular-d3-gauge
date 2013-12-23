@@ -8,7 +8,7 @@ describe('d3GaugesDirective', function () {
   beforeEach(inject(function (_$compile_, _$rootScope_) {
     $compile = _$compile_;
     $rootScope = _$rootScope_;
-    testHTML = '<div d3-gauge id="test-div" width="100" height="50" min-value="0" max-value="100" start-color="green" end-color="red" value="testValue"></div>';
+    testHTML = '<div d3-gauge id="test-div" width="100" height="50" min-value="0" max-value="100" start-color="green" end-color="red" value="testValue" border="false"></div>';
     element = $compile(testHTML)($rootScope);
   }));
 
@@ -26,6 +26,7 @@ describe('d3GaugesDirective', function () {
     expect(isolatedScope.maxValue).toEqual(100);
     expect(isolatedScope.startColor).toEqual('green');
     expect(isolatedScope.endColor).toEqual('red');
+    expect(isolatedScope.border).toEqual(false);
   });
 
   it('updates when bound value changes', function () {
